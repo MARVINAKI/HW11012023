@@ -2,7 +2,10 @@ package com.example.recapp.controllers;
 
 import com.example.recapp.model.Ingredient;
 import com.example.recapp.services.IngService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -14,10 +17,12 @@ public class IngController {
         this.ingService = ingService;
     }
 
-    @PostMapping
-    public Ingredient addIng(@RequestBody Ingredient ingredient) {
-        ingService.addToList(ingredient);
-        return ingredient;
+    @GetMapping
+    public String addIng(@RequestParam String title,
+                         @RequestParam double amount,
+                         @RequestParam String unit) {
+        ingService.addToList(new Ingredient(title, amount, unit));
+        return "Ингредиент " + title + " успешно добавлен";
     }
 
     @GetMapping("/print/{id}")
