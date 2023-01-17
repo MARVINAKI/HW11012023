@@ -20,8 +20,8 @@ public class IngController {
         return ingredient;
     }
 
-    @GetMapping("/print")
-    public Ingredient getIng(@RequestParam int id) {
+    @GetMapping("/print/{id}")
+    public Ingredient getIng(@PathVariable int id) {
         return ingService.getIngredient(id);
     }
 }
