@@ -22,8 +22,8 @@ public class RecController {
         return recipe;
     }
 
-    @GetMapping("/print/{id}")
-    public Recipe getRec(@PathVariable int id) {
+    @GetMapping("/print")
+    public Recipe getRec(@RequestParam int id) {
         return recService.getRecipe(id);
     }
 }
